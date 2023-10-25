@@ -1,27 +1,23 @@
-package variables
+package main
+
+import "fmt"
 
 
-// define variables 
 
-// string type 
-var name string = "ali"
+func main(){
+	var a = "initial"
+	fmt.Println(a)
 
+	var b,c = 15 ,98
+	fmt.Println(b,c)
 
-// number types : 
-var number int = 15 
+	var d = true 
+	fmt.Println(d)
 
-var number1 int8 = 15 
+	var e int 
+	result := e + 1
+	fmt.Println(result)
 
-var number2 int16 = 115 
-
-var number3 int32 = 15 
-
-var number4 int64 = 15 
-
-
-// declare constant 
-
-const username string = "mamadi"
-
-const age int = 20 
-
+	f := "apple"
+	fmt.Println(f)
+}
