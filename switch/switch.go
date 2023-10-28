@@ -49,4 +49,18 @@ func main() {
 	whatAmI(150)
 	whatAmI(false)
 	whatAmI("hey")
+
+	createMessage(18)
+}
+
+
+func createMessage(age int) {
+	switch age {
+		case 15:
+			fmt.Println("hey thanks for use this pelase click " , age)
+		case 18 : 
+			fmt.Println("hey thanks for use this pelase click " , age)
+		default : 
+			fmt.Println("your age is" , age)
+	}
 }
