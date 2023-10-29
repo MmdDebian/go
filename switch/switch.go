@@ -50,7 +50,13 @@ func main() {
 	whatAmI(false)
 	whatAmI("hey")
 
-	createMessage(18)
+	var age int 
+
+	fmt.Println("Please enter age : ")
+
+	fmt.Scanf("%d" , &age)
+
+	createMessage(age)
 }
 
 
