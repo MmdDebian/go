@@ -25,3 +25,8 @@ func main(){
 		print("next else")
 	}
 }
+
+
+func scanComment(){
+	
+}
