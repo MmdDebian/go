@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"slices"
+	"golang.org/x/exp/slices"
 )
 
 func main() {
@@ -52,7 +52,11 @@ func main() {
 
 	t2 := []string{"g","h","i"}
 
-	if slices.Equal(t , t2) {
+	equal := slices.Equal(t , t2) 
+
+	fmt.Println(equal)
+	
+	if equal{
 		fmt.Println("t == t2")
 	}
 
