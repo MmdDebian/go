@@ -36,4 +36,12 @@ func main() {
 	for i , c := range "go" {
 		fmt.Println(i , c)
 	}
+
+	
+	
+	usernames := map[string]int{"username" : 15}
+
+	for k , v := range usernames {
+		fmt.Printf("%s -> %s\n" ,k , v)
+	}
 }
