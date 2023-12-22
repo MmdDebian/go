@@ -1,6 +1,8 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 func main() {
 
@@ -42,6 +44,6 @@ func main() {
 	usernames := map[string]int{"username" : 15}
 
 	for k , v := range usernames {
-		fmt.Printf("%s -> %s\n" ,k , v)
+		print(k , v )
 	}
 }
