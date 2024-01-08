@@ -1,24 +1,22 @@
-package main 
+package main
 
+import "fmt"
 
 type calc interface {
-	add() float64 
-	multiplication() float64
+	add() float64
 }
-
-
 
 type input struct {
-	oneNumber , twoNumber float64 
+	oneNumber float64
+	twoNumber float64
 }
 
 
-func add(i input) float64 {
-	return i.oneNumber + i.twoNumber 
+func (i input) add() float64 {
+	return i.oneNumber + i.twoNumber
 }
 
-
-func multiplication(i input) float64 {
-	return i.oneNumber * i.twoNumber 
+func testClac(c calc) {
+	fmt.Println(c)
+	fmt.Println(c.add())
 }
-

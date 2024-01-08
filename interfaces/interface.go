@@ -44,7 +44,6 @@ func main() {
     measure(r)
     measure(c)
 
-	inputs := input{oneNumber: 5 , twoNumber: 9 }
-
-	fmt.Println(inputs)
+    i := input{oneNumber: 5 , twoNumber: 78}
+    testClac(i)
 }
