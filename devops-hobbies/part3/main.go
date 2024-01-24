@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"math"
+	"time"
 )
 
 // package Redhat
@@ -86,7 +87,7 @@ func (p person) talk(){
 }
 
 
-func main(){
+func constructor(){
 	mohamad := person{
 		animal: animal{
 			age: 23,
@@ -96,4 +97,18 @@ func main(){
 
 	mohamad.talk()
 	mohamad.walk()
+}
+
+
+func process(num int ){
+	for i := 0; i < num; i++ {
+		time.Sleep(500 * time.Millisecond)
+		fmt.Printf("process %d processed \n" , i)
+	}
+}
+
+func main(){
+	fmt.Println("before ")
+	process(4)
+	fmt.Println("after")
 }
