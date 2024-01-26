@@ -100,15 +100,23 @@ func constructor(){
 }
 
 
-func process(num int ){
+func process(num int , done chan bool){
 	for i := 0; i < num; i++ {
-		time.Sleep(500 * time.Millisecond)
+		time.Sleep(800 * time.Millisecond)
 		fmt.Printf("process %d processed \n" , i)
 	}
+
+	done <- true 
 }
 
 func main(){
+	done := make(chan bool)
+
+
 	fmt.Println("before ")
-	process(4)
+	go process(4 , done)
 	fmt.Println("after")
+
+
+	<-done 
 }
