@@ -43,7 +43,12 @@ func main() {
 			case INSERT :
 				element := element{data: []byte(fields[1])[0]}
 
-				curser.prev
+				if curser.prev != nil {
+					element.prev = curser.prev 
+				}
+
+				curser.prev = &element 
+				element.next = curser 
 
 			case LEFT :
 				if curser.prev != nil {
