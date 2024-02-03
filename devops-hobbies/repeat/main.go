@@ -1,85 +1,40 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
+	"os"
+	"sync"
 )
 
-type ErrorMessage interface {
-	initial() string
-}
-
-type response struct {
-	message string
-	status  int
-}
-
-type res struct {
-	message string
-	status  int
-}
-
-func (r response) initial() string {
-	return r.message
-}
-
-func (r res) initial() string {
-	switch r.status {
-		case 200:
-			return "request is ok"
-		case 201 :
-			return "created successfully"
-		case 500 :
-			return "Internal server error"
-		default :
-			return r.message 
-	}
-}
-
-func initialError(e ErrorMessage) {
-	fmt.Printf("Message : %s \n " , e.initial())
-}
-
-
-
-type UserService interface  {
-	create()
-	update()
-}
-
-
-type Users struct {
-	name string 
-	lastName  string
-}
-
-
-func (u Users) update(){
-	fmt.Println(u.lastName)
-}
-
-
-func (u Users) create(){
-	fmt.Println(u.name)
-}
-
-
-
 func main() {
-	r1 := res{message: "hello world" , status: 201}
-	r2 := res{message: "hello world" , status: 500}
-	r3 := res{message: "hello world" , status: 200}
-	r4 := res{message: "hello world" , status: 205}
+	file := "users.txt"
+	var wg sync.WaitGroup 
+	jobs := make(chan string, 1)
+	const workers = 4
 
-	initialError(r1)
-	initialError(r2)
-	initialError(r3)
-	initialError(r4)
+	for worker := 0; worker < workers; worker++ {
+		go findAdmin(jobs , &wg , worker)
+	}
 
-
+	reader , _ := os.Open(file)
+	scanner := bufio.NewScanner(reader)
 	
-	var u UserService 
-	u = Users{name: "mamad"}
-	u = Users{lastName: "mirzaei"}
-	u.update()
-	u.create()
+	for scanner.Scan() {
+		jobs <- scanner.Text() 
+		wg.Add(1)
+	}
+
+	wg.Wait()
+}
+
+func findAdmin(props chan string , wg *sync.WaitGroup , worker int){
+	for prop := range props {
+		if prop == "ADMIN" {
+			fmt.Printf("this prop is admin processed by worker %d\n" , worker)
+		}else {
+			fmt.Printf("this user can be %s processed by %d \n" , prop , worker)
+		}
+		wg.Done()
+	}
 }
