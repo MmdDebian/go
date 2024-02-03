@@ -14,6 +14,39 @@ type element struct {
 	next *element 
 }
 
+
+func (e *element) getFirstElement() (current *element){
+	current = e 
+
+	for {
+		if current.prev == nil {
+			break 
+		}
+		current = current.prev 
+	}
+
+	return 
+}
+
+func (e *element) print(){
+	current := e.getFirstElement()
+
+	var sb strings.Builder
+
+	for {
+		sb.WriteByte(current.data)
+
+		if current.next == nil{
+			break 
+		}else {
+			current = current.next
+		}
+	}
+
+
+	fmt.Println(sb.String())
+}
+
 type command string 
 
 const (
@@ -45,6 +78,7 @@ func main() {
 
 				if curser.prev != nil {
 					element.prev = curser.prev 
+					curser.prev.next = &element 
 				}
 
 				curser.prev = &element 
@@ -72,4 +106,7 @@ func main() {
 				panic("invalid command given")
 		}
 	}
+
+
+	curser.print()
 }

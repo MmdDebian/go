@@ -1,8 +1,7 @@
-7 
-
-INSERT S 
+6
+INSERT S
 INSERT a
 INSERT l 
 INSERT a 
 INSERT m 
-INSERT !  
+INSERT ! 
