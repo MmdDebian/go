@@ -5,6 +5,8 @@ import (
 	"os"
 	"os/signal"
 	"syscall"
+
+	"github.com/mohamadmirzaeidev/phone-book/cmd"
 	"github.com/spf13/cobra"
 )
 
@@ -16,11 +18,11 @@ func main() {
 
 
 	root.AddCommand(
-		
+		cmd.Server{}.Commnad(trap),
 	)
 
 
 	if err := root.Execute() ; err != nil{
-		log.Fatal("faield to execute command \n %v" , err)
+		log.Fatalf("faield to execute command \n %v" , err)
 	}
 }
