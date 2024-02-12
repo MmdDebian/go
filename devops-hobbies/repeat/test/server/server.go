@@ -13,12 +13,7 @@ func New() *Server {
 }
 
 func (s Server) Serve(port int) {
-	addr := fmt.Sprintf(": %d",port)
+	addr := fmt.Sprintf(":%d", port)
+	fmt.Println("server running on port " , addr)
 	log.Fatal(http.ListenAndServe(addr , nil))
-	fmt.Printf("server running on port %d" , addr)
-}
-
-
-func (s Server) test(){
-	
 }
