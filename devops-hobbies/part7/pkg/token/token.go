@@ -16,5 +16,3 @@ type token struct {
 	publicEd25519Key 	crypto.PublicKey
 	expiration 			time.Duration 
 }
-
-
