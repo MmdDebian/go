@@ -2,7 +2,12 @@ package token
 
 import (
 	"crypto"
+	"encoding/json"
+	"errors"
+	"fmt"
 	"time"
+
+	"github.com/golang-jwt/jwt/v5"
 )
 
 
@@ -16,3 +21,54 @@ type token struct {
 	publicEd25519Key 	crypto.PublicKey
 	expiration 			time.Duration 
 }
+
+
+func New(cfg *Config)(Token , error){
+	token := &token{}
+	var err error 
+
+	privatePemKey := []byte(cfg.PrivatePem)
+	token.publicEd25519Key ,err = jwt.ParseEdPrivateKeyFromPEM(privatePemKey)
+
+	if err != nil {
+		return nil , fmt.Errorf("unable to parse Ed25519 public key :%v", err)
+	}
+
+
+	publicPemKey := []byte(cfg.PublicPem)
+	token.publicEd25519Key ,err = jwt.ParseEdPublicKeyFromPEM(publicPemKey)
+
+	if err != nil {
+		return nil , fmt.Errorf("unable to parse Ed25519 public key :%v", err)
+	}
+
+	token.expiration = cfg.Expiration
+
+	return token , nil 
+}
+
+
+type Payload struct {
+	Data []byte `json:"data"`
+	jwt.RegisteredClaims
+}
+
+func (token *token) CreateTokenString(data any)(string ,error){
+	dataBytes , err := json.Marshal(data)
+
+	if err != nil {
+		errStr := fmt.Sprintf("error marshal data : %v" , err)
+
+		return "" , errors.New(errStr)
+	}
+
+	expireAt := jwt.NewNumericDate(time.Now().Add(token.expiration))
+	registeredClaims := jwt.RegisteredClaims{ExpiresAt:expireAt}
+	payload := &Payload{dataBytes , registeredClaims}
+
+	jwtToken := jwt.NewWithClaims(jwt.SigningMethodEdDSA , payload)
+
+	return jwtToken.SignedString(token.privateEd25519Key)
+}
+
+
