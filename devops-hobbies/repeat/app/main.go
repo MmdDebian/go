@@ -31,5 +31,4 @@ func main(){
 	userSession := client.HGetAll(ctx,"user-session:123").Val()
 
 	fmt.Println(userSession)
-
 }
