@@ -72,3 +72,21 @@ func (token *token) CreateTokenString(data any)(string ,error){
 }
 
 
+const (
+	inValidToken 		= "invalid token"
+	errorMappingPayload = "error mapping the payload"
+	errorUnmarshalData 	= "error unmarshaling the data"
+)
+
+
+func (token *token) ExtractTokenData(tokenString string , data any) error {
+	checkSigningMethod := func(jwtToken *jwt.Token)(any ,error){
+		if _ , ok := jwtToken.Method.(*jwt.SigningMethodEd25519); !ok {
+			return nil , fmt.Errorf("wrong signing method : %v" , jwtToken.Header["alg"])
+		}
+
+		return token.publicEd25519Key , nil 
+	}
+
+	
+}
