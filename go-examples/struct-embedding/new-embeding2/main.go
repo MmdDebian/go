@@ -1,9 +1,11 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 type calc interface {
-	add() int
+	add() int 
 	minus() int
 }
 
@@ -11,14 +13,27 @@ type values struct {
 	num1, num2 int
 }
 
-func (v *values) add() int {
-	return v.num1 + v.num2
-
+type values1 struct {
+	num3 int  
 }
 
-func (v *values) minus() int {
+func (v values) add() int {
+	return v.num1 + v.num2
+}
+
+func (v values) minus() int {
 	return v.num1 - v.num2
 }
+
+
+func (v values1) add() int {
+	return v.num3 + v.num3
+}
+
+func (v values1) minus() int {
+	return v.num3 + 1 - v.num3
+}
+
 
 func res(c calc) {
 	fmt.Println(c)
@@ -26,10 +41,10 @@ func res(c calc) {
 	fmt.Println(c.minus())
 }
 
+
 func main() {
-	value := values{
-		num1: 1,
-		num2: 3,
-	}
-	res(&value)
+	a := values{num1: 1 ,num2: 3}
+	b := values1{num3:  4}
+	res(a)
+	res(b)
 }
