@@ -87,6 +87,4 @@ func (token *token) ExtractTokenData(tokenString string , data any) error {
 
 		return token.publicEd25519Key , nil 
 	}
-
-	
 }
