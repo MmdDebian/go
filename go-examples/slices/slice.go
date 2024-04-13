@@ -79,13 +79,11 @@ func main() {
 
 func testSlice(name string){
 	var names []string 
-	
 	names = make([]string,len(name))
-	
 	names = append(names, name)
 
 
 	fmt.Println(names)
-
 	fmt.Print(len(names) == 6)
+	fmt.Print(len(names))
 }
