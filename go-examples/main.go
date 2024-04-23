@@ -18,8 +18,6 @@ type Person struct {
 
 func createJson() ([]byte , error){
 	person := Person{Name:"Alice" , Age : 30}
-
-
 	jsonByte ,err := json.Marshal(person)
 
 	if err != nil {
