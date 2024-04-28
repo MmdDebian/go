@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-
 	"github.com/mohamadmirzaeidev/go/arrays/tool"
 )
 
@@ -32,6 +31,6 @@ func main() {
 	}
 	fmt.Println("2d:", twoD)
 
-	arr := []string{"test", "mamad"}
+	arr := []string{"test", "mamad" , "test2"}
 	tool.Map(arr)
 }
