@@ -27,6 +27,11 @@ func createJson() ([]byte , error){
 	return jsonByte , nil 
 }
 
+
+func logger(data byte){
+	fmt.Println(data)
+}
+
 func main (){	
 	for index := 0 ; index <= 10 ; index++ {
 		print(index , "\n")
