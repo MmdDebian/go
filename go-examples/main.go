@@ -9,47 +9,44 @@ import (
 
 // var isAdmin mytypes = true
 
-
 type Person struct {
-	Name string 
-	Age int 
+	Name string
+	Age  int
 }
 
-
-func createJson() ([]byte , error){
-	person := Person{Name:"Alice" , Age : 30}
-	jsonByte ,err := json.Marshal(person)
+func createJson() ([]byte, error) {
+	person := Person{Name: "Alice", Age: 30}
+	jsonByte, err := json.Marshal(person)
 
 	if err != nil {
-		return nil , err
+		return nil, err
 	}
 
-	return jsonByte , nil 
+	return jsonByte, nil
 }
 
-
-func logger(data byte){
+func logger(data byte) {
 	fmt.Println(data)
 }
 
-func main (){	
-	for index := 0 ; index <= 10 ; index++ {
-		print(index , "\n")
+func main() {
+	for index := 0; index <= 10; index++ {
+		print(index, "\n")
 	}
 
-	if  false {
+	if false {
 		print("is admin")
-	} else if 1 != 1 { 
+	} else if 1 != 1 {
 		print("True")
 	} else {
 		print("not admin")
 	}
 
-	jsonByte , err := createJson()
+	jsonByte, err := createJson()
 
 	if err != nil {
 		fmt.Println(err)
-		return 
+		return
 	}
 
 	fmt.Println(string(jsonByte))
