@@ -3,26 +3,26 @@ package main
 import "fmt"
 
 // for loop in golang
-func main(){
-	i := 1 
+func main() {
+	i := 1
 
 	for i <= 3 {
 		fmt.Println(i)
-		i = i +1 
+		i = i + 1
 	}
 
-	for j := 7 ; j <=9; j++ {
+	for j := 7; j <= 9; j++ {
 		fmt.Println(j)
 	}
 
 	for {
 		fmt.Println("loop")
-		break 
+		break
 	}
 
-	for n := 0 ; n <= 5; n++ {
+	for n := 0; n <= 5; n++ {
 		if n%2 == 0 {
-			continue 
+			continue
 		}
 		fmt.Println(n)
 	}
